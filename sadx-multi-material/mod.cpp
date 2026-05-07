@@ -71,8 +71,13 @@ void SetMaterialStage(int stage, NJS_MATERIAL* material)
 		D3DTOP_MODULATE,	      // Multiply the new texture with the previous
 		D3DTOP_BLENDTEXTUREALPHA, // The new texture appears based on the new texture alpha
 		D3DTOP_BLENDCURRENTALPHA, // The new texture appears based on the previous texture alpha
-		D3DTOP_BLENDFACTORALPHA   // todo: implement
+		D3DTOP_BLENDFACTORALPHA   // The new texture appears based on the material diffuse alpha
 	};
+
+	if (opindex == D3DTOP_BLENDFACTORALPHA || opindex_a == D3DTOP_BLENDFACTORALPHA)
+	{
+		IDirect3DDevice8_SetRenderState(_st_d3d_device_, D3DRS_TEXTUREFACTOR, material->diffuse.color);
+	}
 
 	IDirect3DDevice8_SetTextureStageState(_st_d3d_device_, stage, D3DTSS_COLOROP, colorops[opindex]);
 	IDirect3DDevice8_SetTextureStageState(_st_d3d_device_, stage, D3DTSS_ALPHAOP, colorops[opindex_a]);
