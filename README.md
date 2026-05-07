@@ -3,8 +3,8 @@ This mod adds multiple material support to the basic model format. For example, 
 
 It supports up to 8 stages with a variety of blending options. Models using this feature still work without the mod; only the first texture will render.
 
-> [!WARNING]  
-> This mod is not compatible and will have no effect with the Lantern Engine mod.
+> [!NOTE]
+> The Lantern Engine mod does not support texture stages yet. This mod modifies the Lantern Engine shader to add limited compatibility. It supports up to 4 stages, with 3 blending options (add, subtract, multiply) and environment map support.
 
 ## 📋 How to use
 The basic model format provides 7 bits of user flags for materials. This mod reserves the first bit as a "multi material" flag. When this flag is set, the next material in the list is used as a secondary material.
@@ -15,9 +15,9 @@ For additional materials, alpha blending options are replaced with stage blendin
 * Add: Add the new texture to the previous (additive blending)
 * Subtract: Subtract the new texture from the previous
 * Multiply: Multiply the new texture with the previous
-* Linear interpolation using current texture alpha
+* Linear interpolation using current texture alpha (decal)
 * Linear interpolation using previous alpha
-* Linear interpolation using current specular alpha
+* Linear interpolation using the material diffuse alpha
 
 For example, to add an additive environment map to a model's material:
 1. Set the multi material flag on the material
