@@ -27,6 +27,9 @@
     <ClInclude Include="hde32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="lantern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -39,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FastFunctionHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lantern.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

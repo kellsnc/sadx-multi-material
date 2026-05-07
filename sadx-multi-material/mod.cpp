@@ -2,6 +2,7 @@
 #include <d3d8.h>
 #include "SADXModLoader.h"
 #include "FastFunctionHook.hpp"
+#include "lantern.h"
 
 #define NJD_USERFLAG_MULTITEX 0x20
 
@@ -49,7 +50,7 @@ void SetMaterialStage(int stage, NJS_MATERIAL* material)
 			D3DTADDRESS_MIRROR,
 			D3DTADDRESS_CLAMP
 		};
-
+		
 		IDirect3DDevice8_SetTextureStageState(_st_d3d_device_, stage, D3DTSS_ADDRESSU, wraps[(attrflags & NJD_FLAG_CLAMP_U | (attrflags >> 1) & NJD_FLAG_FLIP_V) >> 16]);
 		IDirect3DDevice8_SetTextureStageState(_st_d3d_device_, stage, D3DTSS_ADDRESSV, wraps[(attrflags & NJD_FLAG_CLAMP_V | (attrflags >> 1) & NJD_FLAG_CLAMP_U) >> 15]);
 
@@ -156,6 +157,11 @@ extern "C"
 	{
 		_njSetMaterial_h.Hook(_njSetMaterial_r);
 		_njEndModel_h.Hook(_njEndModel_r);
+
+		if (helperFunctions.Mods->find_by_name("Lantern Engine"))
+		{
+			LanternSupport();
+		}
 	}
 
 	__declspec(dllexport) ModInfo SADXModInfo = { ModLoaderVer };
